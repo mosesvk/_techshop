@@ -8,7 +8,9 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>
       <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
         {products.map((prod, idx) => (
-            <Product prod={prod} key={prod._id}/>
+          <div className='bg-darkBlue' key={idx}>
+            <Product prod={prod} />
+          </div>
         ))}
       </div>
     </div>
