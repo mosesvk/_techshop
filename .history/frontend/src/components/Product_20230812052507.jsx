@@ -2,7 +2,7 @@ import React from 'react';
 
 const Product = ({ prod }) => {
   return (
-    <div className='card bg-neutral-50 hover:bg-neutral-200 hover:border-orange shadow-xl text-dark cursor-pointer'>
+    <div className='card bg-neutral-50 hover:bg-neutral-focus shadow-xl text-dark cursor-pointer'>
       <a href={`/product/${prod._id}`}>
         <figure>
           <img
