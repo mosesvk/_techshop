@@ -11,6 +11,6 @@ module.exports = {
       'orange': '#EE6F57'
     }
   },
-  plugins: [require('daisyui')]
+  plugins: [require('daisyui'), 'prettier-plugin-tailwindcss']
 
 };

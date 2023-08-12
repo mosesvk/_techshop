@@ -56,7 +56,7 @@ const Header = () => {
             </label>
           </div>
           <div className='dropdown dropdown-end'>
-            <label tabIndex={0} className='cursor-pointer hover:text-neutral-50'>
+            <label tabIndex={0} className='cursor-pointer'>
               <div className='w-15 rounded-full'>
                 <CgProfile />
               </div>
@@ -68,6 +68,7 @@ const Header = () => {
               <li>
                 <a className='justify-between' href='/'>
                   Profile
+                  <span className='badge'>New</span>
                 </a>
               </li>
               <li>

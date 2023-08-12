@@ -4,6 +4,8 @@
 
 @layer components {
   .hoverNav {
-    @apply block rounded py-2 pl-3 pr-4 hover:text-neutral-50;
+    @apply block py-2 pl-3 pr-4 text-gray-900 rounded hover:text-neutral-50;
   }
+
 }
+

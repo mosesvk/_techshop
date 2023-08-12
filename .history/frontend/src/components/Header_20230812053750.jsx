@@ -24,7 +24,7 @@ const Header = () => {
             <li>
               <a
                 href='/'
-                className='hoverNav
+                className='block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500
                 '
                 aria-current='page'
               >
@@ -34,7 +34,7 @@ const Header = () => {
             <li>
               <a
                 href='/'
-                className='hoverNav'
+                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:text-neutral-50'
               >
                 About
               </a>
@@ -42,7 +42,7 @@ const Header = () => {
             <li>
               <a
                 href='/'
-                className='hoverNav'
+                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
               >
                 Services
               </a>
@@ -51,12 +51,12 @@ const Header = () => {
         </div>
         <div className='hidden md:flex items-center text-3xl'>
           <div className='dropdown dropdown-end mr-4'>
-            <label tabIndex={0} className='cursor-pointer hover:text-neutral-50'>
+            <label tabIndex={0} className='cursor-pointer'>
               <AiOutlineShoppingCart />
             </label>
           </div>
           <div className='dropdown dropdown-end'>
-            <label tabIndex={0} className='cursor-pointer hover:text-neutral-50'>
+            <label tabIndex={0} className='cursor-pointer'>
               <div className='w-15 rounded-full'>
                 <CgProfile />
               </div>
@@ -68,6 +68,7 @@ const Header = () => {
               <li>
                 <a className='justify-between' href='/'>
                   Profile
+                  <span className='badge'>New</span>
                 </a>
               </li>
               <li>
