@@ -6,7 +6,7 @@ const Product = ({ prod }) => {
       <Link to={`/product/${prod._id}`}>
         <figure>
           <img
-            className='opacity-75 hover:opacity-100 max-w-[80%] mt-4'
+            className='opacity-75 hover:opacity-100'
             src={prod.image}
             alt='product'
           />

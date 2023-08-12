@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 const Product = ({ prod }) => {
   return (
-    <div className='card bg-neutral-50 hover:bg-light hover:border-orange shadow-xl text-dark cursor-pointer border border-solid border-gray-400'>
+    <div className='card bg-neutral-50 hover:bg-light hover:border-orange shadow-xl text-dark cursor-pointer border-2 border-solid border-gray-400'>
       <Link to={`/product/${prod._id}`}>
         <figure>
           <img
-            className='opacity-75 hover:opacity-100 max-w-[80%] mt-4'
+            className='opacity-75 hover:opacity-100'
             src={prod.image}
             alt='product'
           />

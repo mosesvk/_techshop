@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className='bg-neutral-50 max-h-fit py-3'>
+      <main className='bg-light max-h-fit py-3'>
         <Outlet />
       </main>
     </>
