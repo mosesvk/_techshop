@@ -15,7 +15,7 @@ const Product = ({ prod }) => {
       </Link>
 
       <div className='card-body'>
-        <h3 className='card-title'>
+        <h3 className=''>
           <span className='h-10 truncate '>{prod.name}</span>
           {prod.new && <div className='badge text-light bg-orange'>NEW</div>}
         </h3>

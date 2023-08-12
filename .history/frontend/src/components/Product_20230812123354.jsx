@@ -15,10 +15,10 @@ const Product = ({ prod }) => {
       </Link>
 
       <div className='card-body'>
-        <h3 className='card-title'>
-          <span className='h-10 truncate '>{prod.name}</span>
+        <h2 className='card-title'>
+          {prod.name}
           {prod.new && <div className='badge text-light bg-orange'>NEW</div>}
-        </h3>
+        </h2>
         <div>
           <Rating value={prod.rating} text={`${prod.numReviews} reviews`} />
         </div>
