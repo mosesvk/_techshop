@@ -13,10 +13,12 @@ const Header = () => {
             alt='Flowbite Logo'
           />
           <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-            TechShop
+            TechFlow
           </span>
         </a>
-        <div className='items-center justify-between hidden w-full md:flex md:w-auto' id='navbar-user'
+        <div
+          className='items-center justify-between hidden w-full md:flex md:w-auto'
+          id='navbar-user'
         >
           <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
             <li>
@@ -46,7 +48,7 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <div className='hidden md:flex items-center text-3xl'>
+        <div className='flex items-center text-3xl'>
           <div className='dropdown dropdown-end mr-4'>
             <label tabIndex={0} className='cursor-pointer'>
               <AiOutlineShoppingCart />

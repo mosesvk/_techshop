@@ -6,7 +6,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <main className='bg-light h-screen'>
+      <main className='bg-light h-screen max-w-xl'>
         <HomeScreen />
       </main>
     </>

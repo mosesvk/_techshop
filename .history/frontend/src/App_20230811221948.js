@@ -7,7 +7,9 @@ const App = () => {
     <>
       <Header />
       <main className='bg-light h-screen'>
-        <HomeScreen />
+        <div className='container'>
+          <HomeScreen />
+        </div>
       </main>
     </>
   );
