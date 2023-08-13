@@ -1,0 +1,12 @@
+{
+  "name": "techshop-mvk",
+  "version": "1.0.0",
+  "description": "ecommerce app built with MERN",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "moses kaumatule",
+  "license": "MIT"
+}

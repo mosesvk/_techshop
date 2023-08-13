@@ -1,0 +1,12 @@
+{
+  "name": "techshop-mvk",
+  "version": "1.0.0",
+  "description": "ecommerce app built with MERN",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "moses kaumatule",
+  "license": "MIT"
+}
