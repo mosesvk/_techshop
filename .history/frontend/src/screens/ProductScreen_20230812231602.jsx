@@ -28,7 +28,7 @@ const ProductScreen = () => {
             />
           </div>
           <div>
-            <h3>{product.description}</h3>
+            <h3>Price: ${product.price}</h3>
           </div>
         </div>
         <div className="card w-96 p-4 shadow-xl">

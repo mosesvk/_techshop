@@ -28,7 +28,7 @@ const ProductScreen = () => {
             />
           </div>
           <div>
-            <h3>{product.description}</h3>
+            <h3>Price: ${product.price}</h3>
           </div>
         </div>
         <div className="card w-96 p-4 shadow-xl">
@@ -44,12 +44,7 @@ const ProductScreen = () => {
               </h2>
             </div>
             <div className="card-actions justify-start pt-4">
-              <button
-                className="btn btn-success btn-outline"
-                disabled={product.countInStock === 0}
-              >
-                Buy Now
-              </button>
+              <button className="btn btn-outline btn-success" disabled={product.countInStock === 0}>Buy Now</button>
             </div>
           </div>
         </div>
