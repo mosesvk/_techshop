@@ -5,8 +5,6 @@ dotenv.config()
 import connectDB from './config/db.js'
 const port = process.env.PORT || 5500
 
-connectDB()
-
 const app = express()
 
 app.get('/', (req, res) => {
