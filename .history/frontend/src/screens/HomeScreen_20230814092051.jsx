@@ -4,7 +4,7 @@ import Product from "../components/Product";
 import { useGetProductsQuery } from "../slices/productsApiSlice";
 
 const HomeScreen = () => {
-  const { data: products, isLoading, isError } = useGetProductsQuery();
+  const { data: products, isLoading, error } = useGetProductsQuery();
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
@@ -20,8 +20,8 @@ const HomeScreen = () => {
     <div className="m-auto max-w-screen-xl text-dark">
       {isLoading ? (
         <h2>Loading...</h2>
-      ) : isError ? (
-        <div>{isError?.data?.message || isError.error}</div>
+      ) : error ? (
+        <div>{error?.data?.message || error.error}</div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((prod, idx) => (
