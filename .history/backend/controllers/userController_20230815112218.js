@@ -103,7 +103,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
-      // remember the password is hashed so we can't do it like the above. 
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -165,7 +164,6 @@ const updateUser = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });
-
   } else {
     res.status(404);
     throw new Error('User not found');

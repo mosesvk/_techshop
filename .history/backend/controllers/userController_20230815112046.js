@@ -15,7 +15,7 @@ const authUser = asyncHandler(async (req, res) => {
 
     generateToken(res, user._id);
 
-    res.status(200).json({
+    res.status(200)json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -99,11 +99,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
-      // first check if it was changed at all, if not, keep the user's original 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
 
-      // remember the password is hashed so we can't do it like the above. 
     if (req.body.password) {
       user.password = req.body.password;
     }
@@ -165,7 +163,6 @@ const updateUser = asyncHandler(async (req, res) => {
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
     });
-
   } else {
     res.status(404);
     throw new Error('User not found');

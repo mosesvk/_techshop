@@ -113,13 +113,13 @@ const Header = () => {
               className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
             >
               <li>
-                <Link to>Homepage</Link>
+                <a>Homepage</a>
               </li>
               <li>
-                <Link to>Portfolio</Link>
+                <a>Portfolio</a>
               </li>
               <li>
-                <Link to>About</Link>
+                <a>About</a>
               </li>
             </ul>
           </div>
