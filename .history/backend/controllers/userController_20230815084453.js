@@ -1,7 +1,6 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import User from '../models/userModel.js';
-import jwt from 'jsonwebtoken';
-
+import Jwt from 'jsonwebtoken';
 // @desc    Auth User & get token
 // @route   POST /api/users/login
 // @access  Public
@@ -19,7 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
     // set JWT as HTTP only Cookie
     res.cookie('jwt', token, {
       httpOnly: true, // only true for production
-      secure: process.env.NODE_ENV !== 'development', // only for production
+      secure: process.env.NODE_ENV !== 'development', // only secure for production
       sameSite: 'strict', // prevent attacks
       maxAge: 30 * 24 * 60 * 60 * 1000 // 30days in miliseconds
     })

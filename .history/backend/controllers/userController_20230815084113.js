@@ -1,39 +1,29 @@
 import asyncHandler from '../middleware/asyncHandler.js';
 import User from '../models/userModel.js';
-import jwt from 'jsonwebtoken';
-
+import Jwt  from 'jsonwebtoken';
 // @desc    Auth User & get token
 // @route   POST /api/users/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const {email, password} = req.body
 
-  const user = await User.findOne({ email }); // email: email
+  const user = await User.findOne({email}) // email: email 
 
-  //matchPassword is connecting to line 27 in the UserModel
+    //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: '30d'
-    });
-
-    // set JWT as HTTP only Cookie
-    res.cookie('jwt', token, {
-      httpOnly: true, // only true for production
-      secure: process.env.NODE_ENV !== 'development', // only for production
-      sameSite: 'strict', // prevent attacks
-      maxAge: 30 * 24 * 60 * 60 * 1000 // 30days in miliseconds
-    })
+    const token = jwt.sign({userId: user._id}, process.env.JWT_SECRET)
 
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
+      _id: user._id, 
+      name: user.name, 
+      email: user.email, 
       isAdmin: user.isAdmin
-    });
+    })
   } else {
-    res.status(401);
-    throw new Error('Invalid Email or Password');
+    res.status(401)
+    throw new Error('Invalid Email or Password')
   }
+
 });
 
 // @desc    Register User & GET token
