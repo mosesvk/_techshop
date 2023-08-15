@@ -9,19 +9,17 @@ const protect = asyncHandler(async (req, res, next) => {
   // Read JWT from the 'jwt' cookie
   token = req.cookies.jwt;
 
-  // console.log(token)
-
   if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       req.user = await User.findById(decoded.userId).select('-password');
-      // this will return all the fields so we dont want the password
-      // we want this to be in our request body so we can access it in our userController
+        // this will return all the fields so we dont want the password
+        // we want this to be in our request body so we can access it in our userController
 
       next();
-    } catch (err) {
-      console.error(err.message);
+    } catch (error) {
+      console.error(error);
       res.status(401);
       throw new Error('Not authorized, token failed');
     }

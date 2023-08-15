@@ -12,8 +12,17 @@ const authUser = asyncHandler(async (req, res) => {
 
   //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '30d'
+    });
 
-    generateToken(res, user._id);
+    // set JWT as HTTP only Cookie
+    res.cookie('jwt', token, {
+      httpOnly: true, // only true for production
+      secure: process.env.NODE_ENV !== 'development', // only for production
+      sameSite: 'strict', // prevent attacks
+      maxAge: 30 * 24 * 60 * 60 * 1000 // 30days in miliseconds
+    })
 
     res.json({
       _id: user._id,

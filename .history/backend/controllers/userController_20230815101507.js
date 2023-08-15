@@ -12,8 +12,17 @@ const authUser = asyncHandler(async (req, res) => {
 
   //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: '30d'
+    });
 
-    generateToken(res, user._id);
+    // set JWT as HTTP only Cookie
+    res.cookie('jwt', token, {
+      httpOnly: true, // only true for production
+      secure: process.env.NODE_ENV !== 'development', // only for production
+      sameSite: 'strict', // prevent attacks
+      maxAge: 30 * 24 * 60 * 60 * 1000 // 30days in miliseconds
+    })
 
     res.json({
       _id: user._id,
@@ -134,8 +143,6 @@ const getUsers = asyncHandler(async (req, res) => {
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select('-password');
 
-  console.log(user)
-
   if (user) {
     res.json(user);
   } else {
@@ -148,25 +155,7 @@ const getUserById = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (user) {
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    user.isAdmin = Boolean(req.body.isAdmin);
-
-    const updatedUser = await user.save();
-
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    });
-  } else {
-    res.status(404);
-    throw new Error('User not found');
-  }
+  res.send('Update User');
 });
 
 // @desc    Delete Users - Admin
