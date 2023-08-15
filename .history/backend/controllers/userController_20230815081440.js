@@ -9,19 +9,15 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({email}) // email: email 
 
-    //matchPassword is connecting to line 27 in the UserModel
-  if (user && (await user.matchPassword(password))) {
+  if (user) {
     res.json({
       _id: user._id, 
       name: user.name, 
       email: user.email, 
       isAdmin: user.isAdmin
     })
-  } else {
-    res.status(401)
-    throw new Error('Invalid Email or Password')
   }
-
+  res.send(object);
 });
 
 // @desc    Register User & GET token

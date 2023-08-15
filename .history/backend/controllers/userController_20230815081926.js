@@ -9,7 +9,6 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({email}) // email: email 
 
-    //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id, 
