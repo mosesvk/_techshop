@@ -49,7 +49,6 @@ const LoginScreen = () => {
       <h1 className="pb-2 text-3xl text-darkBlue">Sign In</h1>
       <ToastContainer theme='colored' newestOnTop />
       <form
-        className='py-2'
         onSubmit={submitHandler}
       >
         <div className="mb-4">
@@ -94,7 +93,7 @@ const LoginScreen = () => {
       </form>
       <div>
         <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-          <p className='text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark pl-2 underline'>
+          <p className='className="text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark'>
             Register?
           </p>
         </Link>

@@ -10,9 +10,11 @@ const authUser = asyncHandler(async (req, res) => {
 
   
   const user = await User.findOne({ email }); // email: email
-
+  
+  console.log('hi')
   //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
+    console.log(user)
     generateToken(res, user._id);
 
     res.status(200).json({

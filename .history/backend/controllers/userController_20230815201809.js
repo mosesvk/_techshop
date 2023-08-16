@@ -13,6 +13,7 @@ const authUser = asyncHandler(async (req, res) => {
 
   //matchPassword is connecting to line 27 in the UserModel
   if (user && (await user.matchPassword(password))) {
+    console.log(user)
     generateToken(res, user._id);
 
     res.status(200).json({
@@ -22,8 +23,8 @@ const authUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin
     });
   } else {
-    res.status(401);
     throw new Error('Invalid Email or Password');
+    res.status(401);
   }
 });
 

@@ -94,7 +94,7 @@ const LoginScreen = () => {
       </form>
       <div>
         <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-          <p className='text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark pl-2 underline'>
+          <p className='text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark'>
             Register?
           </p>
         </Link>

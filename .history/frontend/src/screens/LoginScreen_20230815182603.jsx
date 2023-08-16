@@ -6,9 +6,7 @@ import FormContainer from "../components/FormContainer";
 
 import { useLoginMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.min.css";
-
+import { toast } from "react-toastify";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -33,23 +31,21 @@ const LoginScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    console.log('hi')
     try {
-      const res = await login({ email, password }).unwrap();
+      const res = await login({ email, password }).unwrap(); 
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
-      const message = err?.data?.message || err.error
-      toast.error(message, {autoClose: 5000});
+      toast.error(err?.data?.message || err.error);
     }
   };
 
   return (
     <FormContainer>
       <h1 className="pb-2 text-3xl text-darkBlue">Sign In</h1>
-      <ToastContainer theme='colored' newestOnTop />
       <form
-        className='py-2'
+        className="mb-4 rounded border bg-light px-8 pb-8 pt-6 shadow-xl"
         onSubmit={submitHandler}
       >
         <div className="mb-4">
@@ -93,12 +89,12 @@ const LoginScreen = () => {
         {isLoading && <Loader />}
       </form>
       <div>
-        <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-          <p className='text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark pl-2 underline'>
-            Register?
-          </p>
-        </Link>
-      </div>
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            <p className='className="text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark'>
+              Register?
+            </p>
+          </Link>
+        </div>
     </FormContainer>
   );
 };
