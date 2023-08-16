@@ -32,7 +32,7 @@ const LoginScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ email, password }).unwrap(); 
+      const res = await login({ email, password }).unwrap(); // unwrap the promise
       dispatch(setCredentials({ ...res }));
       navigate(redirect);
     } catch (err) {
@@ -55,7 +55,7 @@ const LoginScreen = () => {
             Email Address
           </label>
           <input
-            className="text-gray-700 focus:shadow-outline w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow  shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
+            className="text-gray-700 shadow-lg focus:shadow-outline w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight  shadow focus:bg-[#ffff] focus:text-darkBlue"
             type="email"
             placeholder="Enter Email"
             onChange={(e) => setEmail(e.target.value)}
@@ -69,31 +69,34 @@ const LoginScreen = () => {
             Password
           </label>
           <input
-            className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
+            className="border-red-500 text-gray-700 shadow-lg focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow focus:bg-[#ffff] focus:text-darkBlue"
             type="password"
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="btn btn-outline border-darkBlue text-darkBlue shadow-md"
-            disabled={isLoading}
-            type="submit"
-          >
-            Sign In
-          </button>
+        <div className='flex justify-between'>
+          <div className="flex items-center justify-between">
+            <button
+              className="btn btn-outline border-darkBlue text-darkBlue shadow-md"
+              disabled={isLoading}
+              type="submit"
+            >
+              Sign In
+            </button>
+          </div>
+          <div>
+            <Link
+              to={redirect ? `/register?redirect=${redirect}` : "/register"}
+            >
+              <p className='className="text-blue-500 font-bold" inline-block align-baseline hover:text-dark text-lg' >
+                Register?
+              </p>
+            </Link>
+          </div>
         </div>
-
         {isLoading && <Loader />}
       </form>
-      <div>
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
-            <p className='className="text-blue-500 font-bold" inline-block align-baseline text-lg hover:text-dark'>
-              Register?
-            </p>
-          </Link>
-        </div>
     </FormContainer>
   );
 };

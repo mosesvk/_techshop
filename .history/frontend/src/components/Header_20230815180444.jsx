@@ -98,7 +98,6 @@ const Header = () => {
               tabIndex={0}
               className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
             >
-              {userInfo && <h1 className="text-light pb-2 text-center">{userInfo.name}</h1>}
               <li>
                 <Link className="justify-between" to="/">
                   Profile
@@ -131,6 +130,7 @@ const Header = () => {
                 />
               </svg>
             </label>
+            <h1>{userInfo.name}</h1>
             <ul
               tabIndex={0}
               className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"

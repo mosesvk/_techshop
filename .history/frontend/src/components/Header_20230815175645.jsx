@@ -3,9 +3,9 @@ import { CgProfile } from "react-icons/cg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useLogoutMutation } from "../slices/usersApiSlice";
-import { logout } from "../slices/authSlice";
-import { resetCart } from "../slices/cartSlice";
+import { useLogoutMutation } from '../slices/usersApiSlice';
+import { logout } from '../slices/authSlice';
+import { resetCart } from '../slices/cartSlice';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
@@ -23,7 +23,7 @@ const Header = () => {
       // NOTE: here we need to reset cart state for when a user logs out so the next
       // user doesn't inherit the previous users cart and shipping
       dispatch(resetCart());
-      navigate("/login");
+      navigate('/login');
     } catch (err) {
       console.error(err);
     }
@@ -71,18 +71,18 @@ const Header = () => {
         </div>
         <div className="hidden items-center text-3xl md:flex">
           <div className="dropdown dropdown-end mr-4 flex items-center">
-            <Link to="/cart">
-              <label
-                tabIndex={0}
-                className="cursor-pointer hover:text-neutral-50"
-              >
-                <AiOutlineShoppingCart />
-              </label>
-              {cartItems.length > 0 && (
-                <div className="badge badge-accent badge-sm absolute bottom-4 left-5 h-5 w-6 cursor-pointer">
-                  {cartItems.reduce((a, c) => a + c.qty, 0)}
-                </div>
-              )}
+            <Link to='/cart'>
+            <label
+              tabIndex={0}
+              className="cursor-pointer hover:text-neutral-50"
+            >
+              <AiOutlineShoppingCart />
+            </label>
+            {cartItems.length > 0 && (
+              <div className="badge badge-sm badge-accent absolute left-5 bottom-4 h-5 w-6 cursor-pointer">
+                {cartItems.reduce((a, c) => a + c.qty, 0)}
+              </div>
+            )}
             </Link>
           </div>
           <div className="dropdown dropdown-end">
@@ -98,7 +98,6 @@ const Header = () => {
               tabIndex={0}
               className="menu dropdown-content rounded-box menu-sm z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
             >
-              {userInfo && <h1 className="text-light pb-2 text-center">{userInfo.name}</h1>}
               <li>
                 <Link className="justify-between" to="/">
                   Profile
@@ -108,7 +107,7 @@ const Header = () => {
                 <Link to="/">Settings</Link>
               </li>
               <li>
-                <button onClick={logoutHandler}>Logout</button>
+                <buytton onClick={logoutHandler}>Logout</buytton>
               </li>
             </ul>
           </div>
