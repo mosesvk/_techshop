@@ -7,7 +7,7 @@ import router from "./routes";
 import { Provider } from "react-redux";
 import store from "./store";
 
-
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

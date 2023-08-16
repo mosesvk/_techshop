@@ -41,17 +41,11 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   } 
 
-  let user
-
-  try {
-    user = await User.create({
+  const user = await User.create({
       name,
       email,
       password,
     });
-  } catch (err) {
-    
-  }
 
 
 
@@ -65,6 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
     });
   } else {
+    console.log('hi')
     res.status(400);
     throw new Error('Invalid user data');
   }

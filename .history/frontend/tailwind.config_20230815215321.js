@@ -14,5 +14,5 @@ module.exports = {
       orange: '#EE6F57'
     }
   },
-  plugins: [require('daisyui')]
+  plugins: [require('daisyui'), require('tw-elements/dist/plugin.cjs')]
 };

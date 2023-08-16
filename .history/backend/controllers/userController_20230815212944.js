@@ -41,17 +41,13 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   } 
 
-  let user
-
-  try {
-    user = await User.create({
+  const user = await User.create({
       name,
       email,
       password,
     });
-  } catch (err) {
-    
-  }
+
+  console.log('hi')
 
 
 

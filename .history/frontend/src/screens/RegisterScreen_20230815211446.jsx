@@ -7,8 +7,7 @@ import FormContainer from "../components/FormContainer";
 import { useRegisterMutation } from "../slices/usersApiSlice";
 import { setCredentials } from "../slices/authSlice";
 import { ToastContainer, toast } from "react-toastify";
-
-
+import "react-toastify/ReactToastify.min.css";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
@@ -44,6 +43,7 @@ const RegisterScreen = () => {
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
+        console.log(err.data)
         const message = err?.data?.message || err.error;
         toast.error(message, { autoClose: 5000 });
       }
@@ -67,7 +67,6 @@ const RegisterScreen = () => {
             type="text"
             placeholder="Enter Name"
             onChange={(e) => setName(e.target.value)}
-            required
           />
         </div>
         <div className="mb-4">
@@ -82,36 +81,35 @@ const RegisterScreen = () => {
             type="email"
             placeholder="Enter Email"
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
         <div className="mb-6">
-        <label
-                className="mb-2 block text-sm font-bold text-darkBlue"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-                type="password"
-                placeholder="Enter Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+          <label
+            className="mb-2 block text-sm font-bold text-darkBlue"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
+            type="password"
+            placeholder="Enter Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <div className="mb-6">
-        <label
-                className="mb-2 block text-sm font-bold text-darkBlue"
-                htmlFor="confirmPassword"
-              >
-                Confirm Password
-              </label>
-              <input
-                className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-                type="password"
-                placeholder="Confirm Password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+          <label
+            className="mb-2 block text-sm font-bold text-darkBlue"
+            htmlFor="confirmPassword"
+          >
+            Confirm Password
+          </label>
+          <input
+            className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
+            type="password"
+            placeholder="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
         <div className="flex items-center justify-between">
           <button

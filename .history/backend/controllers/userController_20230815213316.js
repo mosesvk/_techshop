@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
       password,
     });
   } catch (err) {
-    
+    console.error(err)
   }
 
 
