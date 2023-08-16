@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
-    <ul className="full steps w-full">
+    <ul className="full steps">
       <li className={`step ${step1 ? "step-primary" : ""}`}>
         <Link to={step1 ? "/login" : ""}>Register</Link>
       </li>
