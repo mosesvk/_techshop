@@ -45,8 +45,8 @@ const PlaceOrderScreen = () => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 step3 step4 />
-      <div className="grid grid-cols-2 gap-4">
-        <div className=" grid divide-y">
+      <div className="grid grid-cols-3 gap-4">
+        <div className="col-span-2 grid divide-y">
           <div>
             <h2>Shipping</h2>
             <p>
@@ -93,41 +93,40 @@ const PlaceOrderScreen = () => {
             )}
           </div>
         </div>
-        <div class="bg-gray-50 mt-10 rounded-lg border px-4 pt-8 lg:mt-0">
+        <div class="bg-gray-50 mt-10 px-4 pt-8 lg:mt-0">
           <p class="text-xl font-medium">Payment Details</p>
           <p class="text-gray-400">
             Complete your order by providing your payment details.
           </p>
-          <div class="grid divide-y">
-            <div>
-              <label for="email" class="mb-2 mt-4 block text-sm font-medium">
-                Email
-              </label>
-              <p>
-                <strong>Address:{' '}</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
-                {cart.shippingAddress.postalCode},{" "}
-                {cart.shippingAddress.country}
-              </p>
+          <div class="">
+            <label for="email" class="mb-2 mt-4 block text-sm font-medium">
+              Email
+            </label>
+            <div class="relative">
+              <input
+                type="text"
+                id="email"
+                name="email"
+                class="border-gray-200 focus:border-blue-500 focus:ring-blue-500 w-full rounded-md border px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10"
+                placeholder="your.email@gmail.com"
+              />
+              <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-gray-400 h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                  />
+                </svg>
+              </div>
             </div>
-
-            <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="text-gray-400 h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                />
-              </svg>
-            </div>
-
             <label
               for="card-holder"
               class="mb-2 mt-4 block text-sm font-medium"
