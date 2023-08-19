@@ -127,6 +127,37 @@ const PlaceOrderScreen = () => {
                 />
               </svg>
             </div>
+            <div class="flex flex-col sm:flex-row">
+              <div class="relative flex-shrink-0 sm:w-7/12">
+                <input
+                  type="text"
+                  id="billing-address"
+                  name="billing-address"
+                  class="border-gray-200 focus:border-blue-500 focus:ring-blue-500 w-full rounded-md border px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10"
+                  placeholder="Street Address"
+                />
+                <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                  <img
+                    class="h-4 w-4 object-contain"
+                    src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <select
+                type="text"
+                name="billing-state"
+                class="border-gray-200 focus:border-blue-500 focus:ring-blue-500 w-full rounded-md border px-4 py-3 text-sm shadow-sm outline-none focus:z-10"
+              >
+                <option value="State">State</option>
+              </select>
+              <input
+                type="text"
+                name="billing-zip"
+                class="border-gray-200 focus:border-blue-500 focus:ring-blue-500 flex-shrink-0 rounded-md border px-4 py-3 text-sm shadow-sm outline-none focus:z-10 sm:w-1/6"
+                placeholder="ZIP"
+              />
+            </div>
             <div className="mt-6 border-b border-t py-2">
               <div className="flex items-center justify-between">
                 <p className="text-gray-900 text-sm font-medium">Items</p>
