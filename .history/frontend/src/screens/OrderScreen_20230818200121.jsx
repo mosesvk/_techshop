@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
-import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
   useGetPaypalClientIdQuery,
   usePayOrderMutation,
-} from "../slices/ordersApiSlice";
+} from '../slices/ordersApiSlice';
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
@@ -41,13 +41,13 @@ const OrderScreen = () => {
     if (!errorPayPal && !loadingPayPal && paypal.clientId) {
       const loadPaypalScript = async () => {
         paypalDispatch({
-          type: "resetOptions",
+          type: 'resetOptions',
           value: {
-            "client-id": paypal.clientId,
-            currency: "USD",
+            'client-id': paypal.clientId,
+            currency: 'USD',
           },
         });
-        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
       };
       if (order && !order.isPaid) {
         if (!window.paypal) {
@@ -62,7 +62,7 @@ const OrderScreen = () => {
       try {
         await payOrder({ orderId, details });
         refetch();
-        toast.success("Order is paid");
+        toast.success('Order is paid');
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -99,19 +99,9 @@ const OrderScreen = () => {
     await deliverOrder(orderId);
     refetch();
   };
+  return (
+    <div>OrderScreen</div>
+  )
+}
 
-
-  return isLoading ? (
-    <Loader />
-  ) : error ? (
-    <Message>{error.data.message}</Message>
-  ) : (
-    <>
-      <h1 className='text-3xl'>
-        Order: <span className='text-2xl'>{order._id}</span>
-      </h1>
-    </>
-  );
-};
-
-export default OrderScreen;
+export default OrderScreen
