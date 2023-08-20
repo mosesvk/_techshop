@@ -100,20 +100,18 @@ const OrderScreen = () => {
     refetch();
   };
 
-  console.log(order);
-
   return isLoading ? (
     <Loader />
   ) : error ? (
     <Message>{error.data.message}</Message>
   ) : (
-    <div className="xl: lg:w-9/12">
-      <h1 className="mb-6 text-center text-3xl">
+    <div>
+      <h1 className="text-3xl">
         Order: <span className="text-2xl">{order._id}</span>
       </h1>
-      <div className="grid grid-cols-3">
-        <div className="col-span-2 grid divide-y pr-4">
-          <div className="grid grid-rows-5 py-4" d>
+      <div className="grid grid-cols-2">
+        <div className="grid divide-y">
+          <div className="grid grid-rows-5 gap-4">
             <h1 className="text-2xl">Shipping</h1>
             <p>
               <strong className="bold">Name:</strong> {order.user.name}
@@ -133,70 +131,15 @@ const OrderScreen = () => {
               <Message variant="error">Not Delivered</Message>
             )}
           </div>
-          <div className="grid grid-rows-3 py-4">
+          <div className="grid grid-rows-3">
             <h1 className="text-2xl">Payment Method</h1>
             <p>
-              <strong className="bold">Method:</strong> {order.paymentMethod}
+              <strong className="bold">Method:</strong>{" "}
             </p>
-            {order.isPaid ? (
-              <Message>Paid on {order.paidAt}</Message>
-            ) : (
-              <Message variant="error">Not Paid</Message>
-            )}
           </div>
-          {order.orderItems.length === 0 ? (
-            <Message>Order is Empty</Message>
-          ) : (
-            <>
-              {order.orderItems.map((item, idx) => (
-                <div>
-                  <div key={idx}>
-                    <div className="bg-white flex flex-col rounded-lg sm:flex-row">
-                      <img
-                        className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                        src={item.image}
-                        alt=""
-                      />
-                      <div className="flex w-full flex-col px-4 py-4">
-                        <span className="font-semibold">
-                          <Link to={`/product/${item.product}`}>
-                            {item.name}
-                          </Link>
-                        </span>
-                        <p className="text-lg font-bold">
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </>
-          )}
+          <div></div>
         </div>
-        <div>
-          <div className="bg-gray-50 divide-y rounded-lg border px-4 py-8 lg:mt-0 ">
-            <h1 className="pb-4 text-2xl">Order Summary</h1>
-            <div className="mr-8 pt-4">
-              <div className="flex justify-between">
-                <h1>Items</h1>
-                <p>${order.itemsPrice}</p>
-              </div>
-              <div className="flex justify-between">
-                <h1>Shipping</h1>
-                <p>${order.shippingPrice}</p>
-              </div>
-              <div className="flex justify-between">
-                <h1>Tax</h1>
-                <p>${order.taxPrice}</p>
-              </div>
-            </div>
-            <div className="flex justify-between bg-warning rounded p-1 m-1 text-primary-content">
-              <h1>Total</h1>
-              <p>${order.totalPrice}</p>
-            </div>
-          </div>
-        </div>
+        <div></div>
       </div>
     </div>
   );

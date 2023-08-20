@@ -191,7 +191,7 @@ const OrderScreen = () => {
                 <p>${order.taxPrice}</p>
               </div>
             </div>
-            <div className="flex justify-between bg-warning rounded p-1 m-1 text-primary-content">
+            <div className="flex justify-between bg-warning bg-rounded p-1 m-1 text-primary-content">
               <h1>Total</h1>
               <p>${order.totalPrice}</p>
             </div>

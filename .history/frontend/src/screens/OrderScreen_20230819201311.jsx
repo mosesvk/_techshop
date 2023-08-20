@@ -175,26 +175,8 @@ const OrderScreen = () => {
           )}
         </div>
         <div>
-          <div className="bg-gray-50 divide-y rounded-lg border px-4 py-8 lg:mt-0 ">
-            <h1 className="pb-4 text-2xl">Order Summary</h1>
-            <div className="mr-8 pt-4">
-              <div className="flex justify-between">
-                <h1>Items</h1>
-                <p>${order.itemsPrice}</p>
-              </div>
-              <div className="flex justify-between">
-                <h1>Shipping</h1>
-                <p>${order.shippingPrice}</p>
-              </div>
-              <div className="flex justify-between">
-                <h1>Tax</h1>
-                <p>${order.taxPrice}</p>
-              </div>
-            </div>
-            <div className="flex justify-between bg-warning rounded p-1 m-1 text-primary-content">
-              <h1>Total</h1>
-              <p>${order.totalPrice}</p>
-            </div>
+          <div className="bg-gray-50 my-10 rounded-lg border px-4 pt-8 lg:mt-0">
+            <h1 className="">Order Summary</h1>
           </div>
         </div>
       </div>
