@@ -80,7 +80,7 @@ const OrderScreen = () => {
       toast.success('Order is paid');
 
     } catch (err) {
-      console.log(err.message)
+      console.error(err.message)
     }
 
 

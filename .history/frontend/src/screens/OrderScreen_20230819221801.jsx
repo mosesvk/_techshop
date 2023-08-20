@@ -15,7 +15,6 @@ import {
 const OrderScreen = () => {
   const { id: orderId } = useParams();
 
-
   const {
     data: order,
     refetch,
@@ -72,18 +71,10 @@ const OrderScreen = () => {
 
   // TESTING ONLY! REMOVE BEFORE PRODUCTION
   async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
 
-    try {
-      await payOrder({ orderId, details: { payer: {} } });
-      refetch();
-
-      toast.success('Order is paid');
-
-    } catch (err) {
-      console.log(err.message)
-    }
-
-
+    toast.success('Order is paid');
   }
 
   function onError(err) {

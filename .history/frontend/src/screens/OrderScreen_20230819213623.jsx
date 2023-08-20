@@ -15,7 +15,6 @@ import {
 const OrderScreen = () => {
   const { id: orderId } = useParams();
 
-
   const {
     data: order,
     refetch,
@@ -72,18 +71,10 @@ const OrderScreen = () => {
 
   // TESTING ONLY! REMOVE BEFORE PRODUCTION
   async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
 
-    try {
-      await payOrder({ orderId, details: { payer: {} } });
-      refetch();
-
-      toast.success('Order is paid');
-
-    } catch (err) {
-      console.log(err.message)
-    }
-
-
+    toast.success('Order is paid');
   }
 
   function onError(err) {
@@ -109,7 +100,7 @@ const OrderScreen = () => {
     refetch();
   };
 
-  // console.log(order);
+  console.log(order);
 
   return isLoading ? (
     <Loader />
@@ -122,7 +113,7 @@ const OrderScreen = () => {
       </h1>
       <div className="grid grid-cols-3">
         <div className="col-span-2 grid divide-y pr-4">
-          <div className="grid grid-rows-5 py-4">
+          <div className="grid grid-rows-5 py-4" d>
             <h1 className="text-2xl">Shipping</h1>
             <p>
               <strong className="bold">Name:</strong> {order.user.name}
@@ -158,8 +149,8 @@ const OrderScreen = () => {
           ) : (
             <>
               {order.orderItems.map((item, idx) => (
-                <div key={idx}>
-                  <div >
+                <div>
+                  <div key={idx}>
                     <div className="bg-white flex flex-col rounded-lg sm:flex-row">
                       <img
                         className="m-2 h-24 w-28 rounded-md border object-cover object-center"

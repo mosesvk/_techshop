@@ -33,7 +33,7 @@ async function getPayPalAccessToken() {
     
     if (!response.ok) throw new Error('Failed to get access token');
     
-
+    console.log('hit')
   const paypalData = await response.json();
 
   return paypalData.access_token;

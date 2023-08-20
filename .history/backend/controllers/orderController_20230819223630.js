@@ -95,7 +95,6 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
 
   // check if this transaction has been used before
-  console.log(Order)
   const isNewTransaction = await checkIfNewTransaction(Order, req.params.id);
   if (!isNewTransaction) throw new Error('Transaction has been used before');
 

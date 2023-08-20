@@ -23,16 +23,16 @@ async function getPayPalAccessToken() {
       'Accept-Language': 'en_US',
       Authorization: `Basic ${auth}`,
     };
-    
-    const body = 'grant_type=client_credentials';
-    const response = await fetch(url, {
-      method: 'POST',
-      headers,
-      body,
-    });
-    
-    if (!response.ok) throw new Error('Failed to get access token');
-    
+    console.log('hit')
+
+  const body = 'grant_type=client_credentials';
+  const response = await fetch(url, {
+    method: 'POST',
+    headers,
+    body,
+  });
+
+  if (!response.ok) throw new Error('Failed to get access token');
 
   const paypalData = await response.json();
 

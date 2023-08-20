@@ -19,7 +19,7 @@ const protect = asyncHandler(async (req, res, next) => {
       // this will return all the fields so we dont want the password
       // we want this to be in our request body so we can access it in our userController
 
-      // console.log(req.user)
+      console.log(req.user)
 
       next();
     } catch (err) {

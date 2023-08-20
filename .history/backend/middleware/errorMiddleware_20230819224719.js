@@ -12,7 +12,7 @@ const errorHandler = (err, req, res, next) => {
   // NOTE: checking for invalid ObjectId moved to it's own middleware
   // See README for further info.
 
-  // console.log(statusCode, message)
+  console.log(statusCode, message)
 
   res.status(statusCode).json({
     message: message,

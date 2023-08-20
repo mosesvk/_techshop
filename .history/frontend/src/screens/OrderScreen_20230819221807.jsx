@@ -15,7 +15,6 @@ import {
 const OrderScreen = () => {
   const { id: orderId } = useParams();
 
-
   const {
     data: order,
     refetch,
@@ -59,6 +58,9 @@ const OrderScreen = () => {
   }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
 
   function onApprove(data, actions) {
+    console.log(
+      
+    )
     return actions.order.capture().then(async function (details) {
       try {
         await payOrder({ orderId, details });
@@ -72,18 +74,10 @@ const OrderScreen = () => {
 
   // TESTING ONLY! REMOVE BEFORE PRODUCTION
   async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
 
-    try {
-      await payOrder({ orderId, details: { payer: {} } });
-      refetch();
-
-      toast.success('Order is paid');
-
-    } catch (err) {
-      console.log(err.message)
-    }
-
-
+    toast.success('Order is paid');
   }
 
   function onError(err) {
