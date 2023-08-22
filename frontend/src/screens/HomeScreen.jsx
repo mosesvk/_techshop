@@ -1,38 +1,56 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios";
+import { Row, Col } from 'react-bootstrap';
+import { useParams } from 'react-router-dom';
+import { useGetProductsQuery } from '../slices/productsApiSlice';
+import { Link } from 'react-router-dom';
+import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import Product from "../components/Product";
-import { useGetProductsQuery } from "../slices/productsApiSlice";
+import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 
 const HomeScreen = () => {
-  const { data: products, isLoading, isError, error } = useGetProductsQuery();
-  console.log(error)
-  // const [products, setProducts] = useState([]);
+  const { pageNumber, keyword } = useParams();
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const {data} = await axios.get("/api/products");
-  //     setProducts(data);
-  //   };
-
-  //   fetchProducts();
-  // }, []);
+  const { data, isLoading, error } = useGetProductsQuery({
+    keyword,
+    pageNumber,
+  });
 
   return (
-    <div className="m-auto max-w-screen-xl text-dark">
+    <>
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light mb-4'>
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <Loader />
-      ) : isError ? (
-        <Message variant='error'>{isError?.data?.message || isError.error}</Message>
+      ) : error ? (
+        <Message variant='danger'>
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
-        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((prod, idx) => (
-            <Product prod={prod} key={prod._id} />
-          ))}
-        </div>
+        <>
+          <Meta />
+          <h1>Latest Products</h1>
+          <Row>
+            {data.products.map((product) => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product} />
+              </Col>
+            ))}
+          </Row>
+          <Paginate
+            pages={data.pages}
+            page={data.page}
+            keyword={keyword ? keyword : ''}
+          />
+        </>
       )}
-    </div>
+    </>
   );
 };
 

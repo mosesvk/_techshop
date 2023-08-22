@@ -5,14 +5,11 @@ const notFound = (req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-
   let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   let message = err.message;
 
   // NOTE: checking for invalid ObjectId moved to it's own middleware
   // See README for further info.
-
-  // console.log(statusCode, message)
 
   res.status(statusCode).json({
     message: message,

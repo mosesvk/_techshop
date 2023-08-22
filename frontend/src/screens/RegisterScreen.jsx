@@ -1,20 +1,19 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Loader from "../components/Loader";
-import FormContainer from "../components/FormContainer";
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../components/Loader';
+import FormContainer from '../components/FormContainer';
 
-import { useRegisterMutation } from "../slices/usersApiSlice";
-import { setCredentials } from "../slices/authSlice";
-import { ToastContainer, toast } from "react-toastify";
-
-
+import { useRegisterMutation } from '../slices/usersApiSlice';
+import { setCredentials } from '../slices/authSlice';
+import { toast } from 'react-toastify';
 
 const RegisterScreen = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ const RegisterScreen = () => {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get("redirect") || "/";
+  const redirect = sp.get('redirect') || '/';
 
   useEffect(() => {
     if (userInfo) {
@@ -37,101 +36,76 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error('Passwords do not match');
     } else {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
-        const message = err?.data?.message || err.error;
-        toast.error(message, { autoClose: 5000 });
+        toast.error(err?.data?.message || err.error);
       }
     }
   };
+
   return (
     <FormContainer>
-      <h1 className="pb-2 text-3xl text-darkBlue">Register</h1>
-      <ToastContainer theme="colored" newestOnTop />
-
-      <form className="py-2" onSubmit={submitHandler}>
-        <div className="mb-4">
-          <label
-            className="mb-2 block text-sm font-bold text-darkBlue"
-            htmlFor="name"
-          >
-            Name
-          </label>
-          <input
-            className="text-gray-700 focus:shadow-outline w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow  shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-            type="text"
-            placeholder="Enter Name"
+      <h1>Register</h1>
+      <Form onSubmit={submitHandler}>
+        <Form.Group className='my-2' controlId='name'>
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type='name'
+            placeholder='Enter name'
+            value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="mb-2 block text-sm font-bold text-darkBlue"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            className="text-gray-700 focus:shadow-outline w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow  shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-            type="email"
-            placeholder="Enter Email"
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className='my-2' controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-6">
-        <label
-                className="mb-2 block text-sm font-bold text-darkBlue"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-                type="password"
-                placeholder="Enter Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-        </div>
-        <div className="mb-6">
-        <label
-                className="mb-2 block text-sm font-bold text-darkBlue"
-                htmlFor="confirmPassword"
-              >
-                Confirm Password
-              </label>
-              <input
-                className="border-red-500 text-gray-700 focus:shadow-outline mb-3 w-full appearance-none rounded border border-darkBlue bg-light px-3 py-2 leading-tight shadow shadow-lg focus:bg-[#ffff] focus:text-darkBlue"
-                type="password"
-                placeholder="Confirm Password"
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="btn btn-outline border-darkBlue text-darkBlue shadow-md"
-            disabled={isLoading}
-            type="submit"
-          >
-            Register
-          </button>
-        </div>
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group className='my-2' controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Enter password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+        <Form.Group className='my-2' controlId='confirmPassword'>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Confirm password'
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Button disabled={isLoading} type='submit' variant='primary'>
+          Register
+        </Button>
 
         {isLoading && <Loader />}
-      </form>
-      <div>
-        <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-          <p className='className="text-blue-500 font-bold" inline-block pl-2 align-baseline text-lg underline hover:text-dark'>
-            Already User?
-          </p>
-        </Link>
-      </div>
+      </Form>
+
+      <Row className='py-3'>
+        <Col>
+          Already have an account?{' '}
+          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+            Login
+          </Link>
+        </Col>
+      </Row>
     </FormContainer>
   );
 };

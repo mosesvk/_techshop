@@ -2,15 +2,14 @@ import { PRODUCTS_URL } from '../constants';
 import { apiSlice } from './apiSlice';
 
 export const productsApiSlice = apiSlice.injectEndpoints({
-  //this allows us to fetch url through query instead of fetching in useEffect
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
+      query: ({ keyword, pageNumber }) => ({
         url: PRODUCTS_URL,
-        // params: { keyword, pageNumber },
+        params: { keyword, pageNumber },
       }),
       keepUnusedDataFor: 5,
-      // providesTags: ['Products'],
+      providesTags: ['Products'],
     }),
     getProductDetails: builder.query({
       query: (productId) => ({
@@ -62,11 +61,6 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-
-// add "use" beginning, "query" end
-  // to bring into component to fetch data
-// "mutation" end
-  // to POST/PATCH data
 export const {
   useGetProductsQuery,
   useGetProductDetailsQuery,
