@@ -27,7 +27,6 @@ const Header = () => {
       navigate('/login');
     } catch (err) {
       console.error(err);
-      //hello world
     }
   };
 

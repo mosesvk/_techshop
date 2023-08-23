@@ -27,13 +27,12 @@ const Header = () => {
       navigate('/login');
     } catch (err) {
       console.error(err);
-      //hello world
     }
   };
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg='seondary' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
